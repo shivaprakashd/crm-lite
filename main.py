@@ -8,7 +8,8 @@ def display_menu():
     print("========")
     print("1. Display Customers")
     print("2. Add Customer")
-    print("3. Exit")
+    print("3. Save Customers")
+    print("4. Exit")
 
 def load_customers():
 
@@ -49,6 +50,24 @@ def add_customer(customers):
 
     print("Customer added")
 
+def save_customers(customers):
+
+    customer_dicts = []
+
+    for customer in customers:
+        customer_dicts.append(
+            customer.to_dict()
+        )
+
+    response = {
+        "customers": customer_dicts
+    }
+
+    with open("customers.json", "w") as file:
+        json.dump(response, file, indent=4)
+
+    print("Customers saved successfully")
+
 customers = load_customers()
 
 while True:
@@ -67,65 +86,13 @@ while True:
 
     elif choice == "3":
 
+        save_customers(customers)
+
+    elif choice == "4":
+
         print("Goodbye")
         break
 
     else:
 
         print("Invalid choice")
-
-
-
-# import json
-
-# # customers = [
-# #     {
-# #         "customer_id": 1001,
-# #         "name": "Ravi Kumar",
-# #         "mobile": "9876543210"
-# #     },
-# #     {
-# #         "customer_id": 1002,
-# #         "name": "Shivaprakash",
-# #         "mobile": "9999999999"
-# #     }
-# # ]
-
-
-# def save_customers():
-#     with open("customers.json", "w") as file:
-#         json.dump(customers, file, indent=4)
-
-
-# # save_customers()
-
-# # print("Customers saved")
-
-# def load_customers():
-#     with open("customers.json", "r") as file:
-#         return json.load(file)
-
-
-# customers = load_customers()
-
-# for customer in customers:
-#     print(customer["customer_id"])
-#     print(customer["name"])
-#     print(customer["mobile"])
-#     print("-----")
-
-# print(type(customers))
-# print(type(customers[0]))
-
-# new_customer = {
-#     "customer_id": 1003,
-#     "name": "Anitha",
-#     "mobile": "8888888888"
-# }
-
-# customers.append(new_customer)
-
-# save_customers()
-
-# print("New customer added and saved")
-

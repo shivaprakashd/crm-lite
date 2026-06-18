@@ -9,6 +9,11 @@
             "customer_id": 2,
             "name": "Priya",
             "city": "Chennai"
+        },
+        {
+            "customer_id": 3,
+            "name": "Shiva",
+            "city": "Coimbatore"
         }
     ]
 }

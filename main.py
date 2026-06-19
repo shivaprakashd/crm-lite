@@ -4,7 +4,8 @@ from customer import Customer
 
 from customer_repository import (
     load_customers,
-    save_customers
+    save_customers,
+    find_customer_by_id
 )
 
 def display_menu():
@@ -13,8 +14,10 @@ def display_menu():
     print("========")
     print("1. Display Customers")
     print("2. Add Customer")
-    print("3. Save Customers")
-    print("4. Exit")
+    print("3. Search Customer")
+    print("4. Save Customers")
+    print("5. Delete Customers")
+    print("6. Exit")
 
 def display_customers(customers):
 
@@ -23,10 +26,39 @@ def display_customers(customers):
 
     for customer in customers:
         customer.display()
+        
+def delete_customer(customers):
+
+    customer_id = int(input("Enter Customer ID to delete: "))
+
+    customer = find_customer_by_id(
+        customers,
+        customer_id
+    )
+
+    if customer is None:
+
+        print("Customer not found")
+
+    else:
+    
+        customers.remove(customer)
+        print(f"Customer {customer.name} is now deleted")
 
 def add_customer(customers):
 
     customer_id = int(input("Enter Customer ID: "))
+
+    existing_customer = find_customer_by_id(
+        customers,
+        customer_id
+    )
+
+    if existing_customer is not None:
+
+        print("Customer ID already exists")
+        return
+    
     name = input("Enter Name: ")
     city = input("Enter City: ")
 
@@ -39,6 +71,25 @@ def add_customer(customers):
     customers.append(customer)
 
     print("Customer added")
+
+def search_customer(customers):
+
+    customer_id = int(
+        input("Enter Customer ID: ")
+    )
+
+    customer = find_customer_by_id(
+        customers,
+        customer_id
+    )
+
+    if customer is None:
+
+        print("Customer not found")
+
+    else:
+
+        customer.display()    
 
 customers = load_customers()
 
@@ -58,9 +109,17 @@ while True:
 
     elif choice == "3":
 
+        search_customer(customers)
+    
+    elif choice == "4":
+
         save_customers(customers)
 
-    elif choice == "4":
+    elif choice == "5":
+
+        delete_customer(customers)
+
+    elif choice == "6":
 
         print("Goodbye")
         break

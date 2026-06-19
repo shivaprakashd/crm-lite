@@ -46,3 +46,12 @@ def save_customers(customers):
         )
 
     print("Customers saved successfully")
+
+def find_customer_by_id(customers, customer_id):
+
+    for customer in customers:
+
+        if customer.customer_id == customer_id:
+            return customer
+
+    return None

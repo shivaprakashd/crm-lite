@@ -15,7 +15,7 @@ class Customer:
         )
 
     @staticmethod
-    def from_dict(data: dict) -> "Customer":
+    def from_dict(data: dict) -> Self:
         return Customer(
             data["customer_id"],
             data["name"],

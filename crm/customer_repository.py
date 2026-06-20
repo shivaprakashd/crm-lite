@@ -1,6 +1,6 @@
 import json
 
-from customer import Customer
+from crm.customer import Customer
 
 
 def load_customers() -> list[Customer]:

@@ -1,8 +1,8 @@
 import json
 
-from customer import Customer
+from crm.customer import Customer
 
-from customer_repository import (
+from crm.customer_repository import (
     load_customers,
     save_customers,
     find_customer_by_id

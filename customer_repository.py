@@ -3,7 +3,7 @@ import json
 from customer import Customer
 
 
-def load_customers():
+def load_customers() -> list[Customer]:
 
     with open("customers.json", "r") as file:
         response = json.load(file)
@@ -23,7 +23,9 @@ def load_customers():
     return customers
 
 
-def save_customers(customers):
+def save_customers(
+    customers: list[Customer]
+) -> None:
 
     customer_dicts = []
 
@@ -47,7 +49,10 @@ def save_customers(customers):
 
     print("Customers saved successfully")
 
-def find_customer_by_id(customers, customer_id):
+def find_customer_by_id(
+    customers: list[Customer], 
+    customer_id: int
+) -> Customer | None:
 
     for customer in customers:
 

@@ -8,7 +8,7 @@ from customer_repository import (
     find_customer_by_id
 )
 
-def display_menu():
+def display_menu() -> None:
 
     print("\nCRM Lite")
     print("========")
@@ -16,10 +16,11 @@ def display_menu():
     print("2. Add Customer")
     print("3. Search Customer")
     print("4. Save Customers")
-    print("5. Delete Customers")
-    print("6. Exit")
+    print("5. Update Customers")
+    print("6. Delete Customers")
+    print("7. Exit")
 
-def display_customers(customers):
+def display_customers(customers: list[Customer]) -> None:
 
     print("\nCustomer List")
     print("-------------")
@@ -27,25 +28,7 @@ def display_customers(customers):
     for customer in customers:
         customer.display()
         
-def delete_customer(customers):
-
-    customer_id = int(input("Enter Customer ID to delete: "))
-
-    customer = find_customer_by_id(
-        customers,
-        customer_id
-    )
-
-    if customer is None:
-
-        print("Customer not found")
-
-    else:
-    
-        customers.remove(customer)
-        print(f"Customer {customer.name} is now deleted")
-
-def add_customer(customers):
+def add_customer(customers: list[Customer]) -> None:
 
     customer_id = int(input("Enter Customer ID: "))
 
@@ -72,7 +55,7 @@ def add_customer(customers):
 
     print("Customer added")
 
-def search_customer(customers):
+def search_customer(customers: list[Customer]) -> None:
 
     customer_id = int(
         input("Enter Customer ID: ")
@@ -90,6 +73,47 @@ def search_customer(customers):
     else:
 
         customer.display()    
+
+def update_customer(customers: list[Customer]) -> None:
+
+    customer_id = int(input("Enter Customer ID to update: "))
+
+    customer = find_customer_by_id(
+        customers,
+        customer_id
+    )
+
+    if customer is None:
+
+        print("Customer not found")
+
+    else:
+
+        name = input("Enter new Name: ")
+        city = input("Enter new City: ")
+
+        customer.name = name
+        customer.city = city
+
+        print(f"Customer {customer.customer_id} updated")
+
+def delete_customer(customers: list[Customer]) -> None:
+
+    customer_id = int(input("Enter Customer ID to delete: "))
+
+    customer = find_customer_by_id(
+        customers,
+        customer_id
+    )
+
+    if customer is None:
+
+        print("Customer not found")
+
+    else:
+    
+        customers.remove(customer)
+        print(f"Customer {customer.name} is now deleted")
 
 customers = load_customers()
 
@@ -117,9 +141,13 @@ while True:
 
     elif choice == "5":
 
-        delete_customer(customers)
+        update_customer(customers)
 
     elif choice == "6":
+
+        delete_customer(customers)
+
+    elif choice == "7":
 
         print("Goodbye")
         break

@@ -1,19 +1,21 @@
+from typing import Self
+
 class Customer:
 
-    def __init__(self, customer_id, name, city):
+    def __init__(self, customer_id: int, name: str, city: str):
         self.customer_id = customer_id
         self.name = name
         self.city = city
 
     def display(self):
-        print(
+        print(  
             f"ID: {self.customer_id}, "
             f"Name: {self.name}, "
             f"City: {self.city}"
         )
 
     @staticmethod
-    def from_dict(data):
+    def from_dict(data: dict) -> Self:
         return Customer(
             data["customer_id"],
             data["name"],

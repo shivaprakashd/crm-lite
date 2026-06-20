@@ -22,7 +22,17 @@
         },
         {
             "customer_id": 2,
-            "name": "Priya",
+            "name": "Priyamani",
+            "city": "Madras"
+        },
+        {
+            "customer_id": 6,
+            "name": "Nalini K",
+            "city": "Chikkamagaluru"
+        },
+        {
+            "customer_id": 7,
+            "name": "Mukund",
             "city": "Bangalore"
         }
     ]

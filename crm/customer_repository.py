@@ -5,9 +5,20 @@ from crm.customer import Customer
 
 def load_customers() -> list[Customer]:
 
-    with open("customers.json", "r") as file:
-        response = json.load(file)
+    try:
 
+        with open("customers.json", "r") as file:
+            response = json.load(file)
+
+    except FileNotFoundError:
+        print("customers.json not found. Starting with an empty customer list.")
+        return []
+
+    except json.JSONDecodeError:
+        print("customers.json is corrupted.")
+
+        raise
+    
     customer_dicts = response["customers"]
 
     customers = []

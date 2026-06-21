@@ -8,6 +8,10 @@ from crm.customer_repository import (
     find_customer_by_id
 )
 
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 def display_menu() -> None:
 
     print("\nCRM Lite")
@@ -55,12 +59,17 @@ def add_customer(customers: list[Customer]) -> None:
 
     print("Customer added")
 
+def get_customer_id(prompt: str) -> int:
+    while True:
+        try:
+            return(int(input(prompt)))
+        except ValueError:
+            print("Invalid input. Please enter a valid customer ID.")
+
 def search_customer(customers: list[Customer]) -> None:
-
-    customer_id = int(
-        input("Enter Customer ID: ")
-    )
-
+    
+    customer_id = get_customer_id("Enter Customer ID to search: ")
+    
     customer = find_customer_by_id(
         customers,
         customer_id
@@ -69,6 +78,7 @@ def search_customer(customers: list[Customer]) -> None:
     if customer is None:
 
         print("Customer not found")
+        logging.warning(f"Customer with ID {customer_id} not found in the system.")
 
     else:
 
@@ -76,7 +86,7 @@ def search_customer(customers: list[Customer]) -> None:
 
 def update_customer(customers: list[Customer]) -> None:
 
-    customer_id = int(input("Enter Customer ID to update: "))
+    customer_id = get_customer_id("Enter Customer ID to update: ")
 
     customer = find_customer_by_id(
         customers,
@@ -99,7 +109,7 @@ def update_customer(customers: list[Customer]) -> None:
 
 def delete_customer(customers: list[Customer]) -> None:
 
-    customer_id = int(input("Enter Customer ID to delete: "))
+    customer_id = get_customer_id("Enter Customer ID to delete: ")
 
     customer = find_customer_by_id(
         customers,
@@ -113,7 +123,8 @@ def delete_customer(customers: list[Customer]) -> None:
     else:
     
         customers.remove(customer)
-        print(f"Customer {customer.name} is now deleted")
+        print(f"Customer {customer.name} deleted")
+        logging.info(f"Customer {customer.name} is now deleted")
 
 customers = load_customers()
 

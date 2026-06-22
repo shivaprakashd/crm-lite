@@ -1,11 +1,11 @@
-from typing import Self
+from dataclasses import dataclass
 
+@dataclass
 class Customer:
 
-    def __init__(self, customer_id: int, name: str, city: str):
-        self.customer_id = customer_id
-        self.name = name
-        self.city = city
+    customer_id: int
+    name: str
+    city: str
 
     def display(self):
         print(  

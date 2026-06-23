@@ -48,6 +48,7 @@ def add_customer(customers: list[Customer]) -> None:
     
     name = input("Enter Name: ")
     city = input("Enter City: ")
+    email = input("Enter Email (optional): ").strip() or None
 
     customer = Customer(
         customer_id,

@@ -44,8 +44,26 @@ def test_find_first_customer():
     assert customer is not None
     assert customer.name == "Shiv"
 
-test_find_first_customer()
-test_find_existing_customer()
-test_find_missing_customer()
+def test_customer_email():
+    customer = Customer(1, "Shiv", "Bangalore", email="shivaprakashd@gmail.com")
+    assert customer.email == "shivaprakashd@gmail.com"
 
-print("All tests passed")
+def test_from_dict_without_email():
+    data = {
+        "customer_id": 1,
+        "name": "Shiv",
+        "city": "Bangalore"
+    }
+
+    customer = Customer.from_dict(data)
+
+    assert customer.customer_id == 1
+    assert customer.name == "Shiv"
+    assert customer.city == "Bangalore"
+    assert customer.email is None
+
+# test_find_first_customer()
+# test_find_existing_customer()
+# test_find_missing_customer()
+
+# print("All tests passed")

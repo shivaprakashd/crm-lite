@@ -1,12 +1,11 @@
-from typing import Self
+from dataclasses import dataclass
 
+@dataclass
 class Customer:
-
-    def __init__(self, customer_id: int, name: str, city: str):
-        self.customer_id = customer_id
-        self.name = name
-        self.city = city
-
+    customer_id: int
+    name: str
+    city: str
+        
     def display(self):
         print(  
             f"ID: {self.customer_id}, "
@@ -15,7 +14,7 @@ class Customer:
         )
 
     @staticmethod
-    def from_dict(data: dict) -> Self:
+    def from_dict(data: dict) -> 'Customer':
         return Customer(
             data["customer_id"],
             data["name"],

@@ -1,3 +1,5 @@
+APP_VERSION = "1.1"
+
 import json
 
 from crm.customer import Customer
@@ -102,9 +104,11 @@ def update_customer(customers: list[Customer]) -> None:
 
         name = input("Enter new Name: ")
         city = input("Enter new City: ")
+        email = input("Enter new Email (optional): ").strip() or None
 
         customer.name = name
         customer.city = city
+        customer.email = email
 
         print(f"Customer {customer.customer_id} updated")
 

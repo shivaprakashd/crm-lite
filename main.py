@@ -3,11 +3,17 @@ APP_VERSION = "1.1"
 import json
 
 from crm.customer import Customer
+from crm.customer_request import CustomerRequest
 
 from crm.customer_repository import (
     load_customers,
     save_customers,
     find_customer_by_id
+)
+
+from crm.customer_service import (
+    create_customer,
+    DuplicateCustomerException
 )
 
 import logging
@@ -37,30 +43,24 @@ def display_customers(customers: list[Customer]) -> None:
 def add_customer(customers: list[Customer]) -> None:
 
     customer_id = int(input("Enter Customer ID: "))
-
-    existing_customer = find_customer_by_id(
-        customers,
-        customer_id
-    )
-
-    if existing_customer is not None:
-
-        print("Customer ID already exists")
-        return
     
     name = input("Enter Name: ")
     city = input("Enter City: ")
     email = input("Enter Email (optional): ").strip() or None
 
-    customer = Customer(
-        customer_id,
-        name,
-        city
+    customer_request = CustomerRequest(
+        customer_id=customer_id,
+        name=name,
+        city=city,
+        email=email
     )
 
-    customers.append(customer)
-
-    print("Customer added")
+    try:
+        create_customer(customer_request)
+        print("Customer added")
+    except DuplicateCustomerException:
+        print("Customer ID already exists")
+        return
 
 def get_customer_id(prompt: str) -> int:
     while True:

@@ -2,69 +2,33 @@
     "customers": [
         {
             "customer_id": 1,
-            "name": "Ravi",
+            "name": "Shivaprakash",
             "city": "Bangalore",
-            "email": null
-        },
-        {
-            "customer_id": 3,
-            "name": "Shiva",
-            "city": "Coimbatore",
-            "email": null
-        },
-        {
-            "customer_id": 4,
-            "name": "Aaryan",
-            "city": "Bangalore",
-            "email": null
-        },
-        {
-            "customer_id": 5,
-            "name": "Prithvi",
-            "city": "Bangalore",
-            "email": null
+            "email": "shivaprakashd@gmail.com"
         },
         {
             "customer_id": 2,
-            "name": "Priyamani",
-            "city": "Madras",
-            "email": null
-        },
-        {
-            "customer_id": 6,
-            "name": "Nalini K",
-            "city": "Chikkamagaluru",
-            "email": null
-        },
-        {
-            "customer_id": 7,
-            "name": "Mukund",
-            "city": "Bangalore",
-            "email": null
-        },
-        {
-            "customer_id": 10,
-            "name": "Aaryan",
-            "city": "Morris Town, NJ, USA",
-            "email": "aaryan.sprakash@gmail.com"
-        },
-        {
-            "customer_id": 10,
-            "name": "Aaryan",
-            "city": "Morris Town, NJ, USA",
-            "email": "aaryan.sprakash@gmail.com"
-        },
-        {
-            "customer_id": 9,
-            "name": "Prithvi",
-            "city": "Bangalore",
-            "email": "prithvi.sprakash@gmail.com"
-        },
-        {
-            "customer_id": 11,
             "name": "Nalini",
             "city": "Bangalore",
-            "email": "nalinirakesh@gmail.com"
+            "email": "nalinik@gmail.com"
+        },
+        {
+            "customer_id": 3,
+            "name": "Aaryan ",
+            "city": "Bangalore",
+            "email": "aaryansp@gmail.com"
+        },
+        {
+            "customer_id": 4,
+            "name": "Prithvi",
+            "city": "Bangalore",
+            "email": "prithvisp@gmail.com"
+        },
+        {
+            "customer_id": 5,
+            "name": "Anitha",
+            "city": "Bangalore",
+            "email": "anithasp@gmail.com"
         }
     ]
 }

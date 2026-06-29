@@ -1,12 +1,7 @@
 from fastapi import FastAPI, HTTPException, status
 from crm.customer_request import CustomerRequest
-from crm.customer import Customer
-
-from crm.customer_repository import (
-    load_customers,
-    find_customer_by_id,
-    save_customers
-)
+from crm.customer_repository import load_customers, find_customer_by_id
+from crm.customer_service import create_customer, DuplicateCustomerException
 
 app = FastAPI()
 
@@ -41,29 +36,11 @@ def get_customer(customer_id: int):
 
 @app.post("/customers", status_code=status.HTTP_201_CREATED)
 def add_customer(customer_request: CustomerRequest):
-
-    customers = load_customers()
-
-    existing_customer = find_customer_by_id(
-        customers,
-        customer_request.customer_id
-    )
-
-    if existing_customer is not None:
+    try:
+        customer = create_customer(customer_request)
+        return customer
+    except DuplicateCustomerException:
         raise HTTPException(
             status_code=409,
             detail="Customer already exists"
         )
-
-    customer = Customer(
-        customer_request.customer_id,
-        customer_request.name,
-        customer_request.city,
-        customer_request.email
-    )
-
-    customers.append(customer)
-
-    save_customers(customers)
-
-    return customer
